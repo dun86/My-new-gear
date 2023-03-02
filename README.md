@@ -1,24 +1,31 @@
-# README
+#  My New Gear...
+## サイト概要
+### サイトテーマ
+ ギターやベース、その他楽器と音楽を愛する人が
+ 各々で自慢の機材セッティングや愛機を動画やコメントと一緒に投稿し共有し交流をするSNSアプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### テーマを選んだ理由
+  楽器や音楽を愛するプレイヤー全員が情報を発信することでこれから始める方からプロまでの幅広い世代の交流の場にしたい！</br>
+  このアプリを通して、多くのSNSや動画コンテンツ等でバラバラになっていたプレイヤーやこれから始める入門者を集わせることができると考えます！</br>
+  昨今、バンドブームは続いてるものの、始めるにあたってのハードルの高さゆえに挫折やそもそも始める気になれないなどの問題もあり、楽器業界の売上は下火にあります。</br>
+  このアプリを通して、楽器というものを身近に感じさせ、悩みを解決し、モチベーションを周りと共に高め、また購買意欲を高めることで楽器業界を盛り上げていけると考えます。
+  
+### ターゲットユーザ
+・楽器初心者～上級者</br>
+・これからバンド等を始めてみたい方</br>
+・音楽と楽器を愛する方全般
 
-Things you may want to cover:
+### 主な利用シーン
+・購入した楽器や機材、自慢のセッティングを紹介したい時</br>
+・音作りや、楽器購入で悩んでおり情報が欲しい時</br>
+・販売中の楽器や機材を宣伝したい時</br>
+## 設計書
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+使用検討中
