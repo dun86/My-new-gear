@@ -1,4 +1,4 @@
-# My New Gear...
+# <My New Gear...>
 
 ## サイト概要
 ### サイトテーマ
