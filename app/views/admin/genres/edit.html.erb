@@ -1,0 +1,19 @@
+<div class="container mt-3" style="margin-bottom: 5vh;">
+    <div class="row">&emsp;
+        <h3 class="px-3"><span class="header" style="background-color:#EEEEEE">
+        &emsp;ジャンル編集&emsp;<span></h3>
+    </div><br>
+
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+    <%= render 'layouts/errors', obj: @genre %>
+        <div class="form-group ml-3">
+          <p>ジャンル名&emsp;&emsp;
+          <%= f.text_field :genre_name , size:"30% " %>&emsp;&emsp;
+          <%= f.submit '　変更を保存　', class:"btn btn-success btn-md" %>
+          </p>
+        </div>
+    <% end %><br>
+     <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :delete do |f| %>
+     <p><%= f.submit '　削除　', class:"btn btn-success btn-md" %></p>
+     <% end %>
+</div>
