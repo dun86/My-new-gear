@@ -10,16 +10,17 @@ class Public::PostsController < ApplicationController
         # @postはインスタンス変数でviewで参照可能
         @post = Post.new
     end
+    
     def create
      @post = Post.new(post_params)
-     @posy.customer_id = current_customer.id
+     @post.customer_id = current_customer.id
     if @post.save
-      redirect_to post_path(@post), notice: "You have created book successfully."
+      redirect_to public_posts_path(@post), notice: "You have created book successfully."
     else
       @posts = Post.all
       render 'index'
     end
-  end
+    end
     
     # findメソッドで、idにひもづくPOSTオブジェクトを取得する
     def show
@@ -39,7 +40,7 @@ class Public::PostsController < ApplicationController
 
     #paramsから欲しいデータのみ抽出
     def post_params
-        params.require(:post).permit(:name, :title, :introduction)
+        params.require(:post).permit(:genre_id, :title, :introduction)
     end
 
 end

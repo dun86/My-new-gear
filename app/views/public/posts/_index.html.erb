@@ -8,9 +8,9 @@
     </tr>
   </thead>
   <tbody>
-    <% public_posts.each do |post| %>
+    <% books.each do |book| %>
       <tr>
-        <td><%= link_to(post.customer) do %>
+        <td><%= link_to(book.user) do %>
           <%= image_tag book.user.get_profile_image, size:'50x50' %>
           <% end %>
         </td>

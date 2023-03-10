@@ -10,10 +10,11 @@
           <p>ジャンル名&emsp;&emsp;
           <%= f.text_field :genre_name , size:"30% " %>&emsp;&emsp;
           <%= f.submit '　変更を保存　', class:"btn btn-success btn-md" %>
-          </p>
         </div>
-    <% end %><br>
-     <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :delete do |f| %>
-     <p><%= f.submit '　削除　', class:"btn btn-success btn-md" %></p>
-     <% end %>
+    <% end %>
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :delete do |f| %>
+    <div class="form-group ml-3">
+     <%= f.submit '　削除　', class:"btn btn-success btn-md" %></p>
+    </div>
+    <% end %>
 </div>

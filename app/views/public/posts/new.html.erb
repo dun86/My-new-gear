@@ -19,7 +19,8 @@
               <td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう" %></td>
             </tr>
             <tr>
-              
+              <td><%= f.label :ジャンル %></td>
+              <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, include_blank: "--選択して下さい--" %></td>
             </tr>
           </tbody>
         </table>
@@ -27,7 +28,7 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-        <%= f.submit '　新規登録　', class: 'btn btn-lg btn-success' %>
+        <%= f.submit '　投稿　', class: 'btn btn-lg btn-success' %>
       </div>
     </div>
   <% end %>
