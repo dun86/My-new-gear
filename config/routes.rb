@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   end
   namespace :public do
     resources :posts
+    resource :favorites, only: [:create, :destroy]
+    resources :customers, only: [:index,:show,:edit,:update] do
+  end
   end
   
   get '/' => 'homes#top'

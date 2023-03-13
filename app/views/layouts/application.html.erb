@@ -30,7 +30,7 @@
               <%= link_to '投稿フォーム', new_public_post_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'マイページ', customer_session_path(current_customer.id), class: 'nav-link text-dark' %>
+              <%= link_to 'マイページ', public_customer_path(current_customer.id), class: 'nav-link text-dark' %>
             </li>
             <% else %>
             <li class="nav-item">
