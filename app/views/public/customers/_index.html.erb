@@ -10,9 +10,9 @@
     <% users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
-        <td><%= user.name %></td>
-        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-         <td><%= render "relationships/btn", user: user %></td>
+        <td><%= customer.customer_name %></td>
+        <td><%= link_to 'Show', customer, class: "customer_#{customer.id}" %></td>
+         <td><%= render "relationships/btn", customer: customer %></td>
       </tr>
       <% end %>
   </tbody>

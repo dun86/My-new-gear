@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
         # @postはインスタンス変数でviewで参照可能
         @post = Post.new
     end
-    
+
     def create
      @post = Post.new(post_params)
      @post.customer_id = current_customer.id
@@ -21,21 +21,22 @@ class Public::PostsController < ApplicationController
       render 'index'
     end
     end
-    
+
     # findメソッドで、idにひもづくPOSTオブジェクトを取得する
     def show
      @post = Post.find(params[:id])
+     @post_comment =PostComment.new
     end
-    
+
     def update
     end
-    
+
     def destroy
     end
-    
+
     def update
     end
-    
+
     private
 
     #paramsから欲しいデータのみ抽出

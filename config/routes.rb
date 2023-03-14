@@ -3,7 +3,10 @@ Rails.application.routes.draw do
     resources :genres
   end
   namespace :public do
-    resources :posts
+    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+       resources :post_comments, only: [:create]
+       end
+      
     resource :favorites, only: [:create, :destroy]
     resources :customers, only: [:index,:show,:edit,:update] do
   end
