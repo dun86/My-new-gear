@@ -8,17 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @posts.each do |post| %>
+    <% @favorites.each do |favorite| %>
       <tr>
-        <td>
-            <%= link_to public_post_path(post) do %>
-            <% if post.images.attached? %>
-            <%= image_tag url_for(post.images.variant(resize: "100x100")), onerror: "this.onerror=null;this.src='/images/no_image.png';" %>
-            <% else %>
-            <%= image_tag "/images/no_image.png", size: "100x100" %>
-            <% end %>
-            <%= post.customer.customer_name %>
-            <% end %>
+        <td><%= link_to(public_posts_path) do %>
+          <%= image_tag post.customer.image, size:'50x50' %>
+          <% end %>
         </td>
         <td><%= link_to post.title,public_post_path(post), class: "post_#{post.id}" %></td>
         <td><%= post.introduction %></td>

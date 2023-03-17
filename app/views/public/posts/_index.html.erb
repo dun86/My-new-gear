@@ -9,10 +9,10 @@
   <tbody>
     <% posts.each do |post| %>
       <tr>
-        <td><%= link_to post.title, public_posts_path(post), class: "post_#{post.id}" %></td>
+        <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
         <td><%= post.introduction %></td>
-        <td>コメント数: <!--%= book.book_comments.count %></td>
-        <td><-%= render "favorites/btn", book: book %></td>
+        <td>コメント数: <%= post.post_comments.count %></td>
+        <td><!--%= render "favorites/btn", post: post %--></td>
       </tr>
     <% end %>
   </tbody>

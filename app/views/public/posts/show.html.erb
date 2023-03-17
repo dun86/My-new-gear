@@ -1,2 +1,41 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'public/customers/info', customer: @post.customer %>
+      <h2 class="mt-3">New Gear</h2>
+      <%= render 'form', post: Post.new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Your gear detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><% if @post.customer.image.present? %>
+          <%= link_to(public_posts_path) do %>
+          <%= image_tag @post.customer.image, size: "100x100",onerror: "this.onerror=null;this.src='/images/no_image.png';" %></br>
+          <%= @post.customer.customer_name %>
+          <% end %>
+          <% end %>
+          </td>
+          <td><%= link_to @post.title,public_post_path(@post)%></td>
+          <td><%= @post.introduction %></td>
+          <td>コメント数: <%= @post.post_comments.count %></td>
+
+          <td id="favorite-btn">
+          <%= render "favorites/btn", post: @post %>
+          </td>
+
+          <% if @post.customer == current_customer %>
+            <td><%= link_to 'Edit', edit_public_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
+            <td><%= link_to 'Destroy',public_post_path(@post),method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%></td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="comment">
+        <%= render "public/post_comments/index", post: @post %>
+      </div>
+      <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+
+    </div>
+  </div>
+</div>

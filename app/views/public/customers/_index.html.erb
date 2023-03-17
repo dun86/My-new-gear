@@ -7,9 +7,9 @@
     </tr>
   </thead>
   <tbody>
-    <% users.each do |user| %>
+    <% customers.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+        <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
         <td><%= customer.customer_name %></td>
         <td><%= link_to 'Show', customer, class: "customer_#{customer.id}" %></td>
          <td><%= render "relationships/btn", customer: customer %></td>

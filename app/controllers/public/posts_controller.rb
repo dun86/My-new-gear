@@ -32,9 +32,17 @@ class Public::PostsController < ApplicationController
     end
 
     def destroy
+    @post =Post.find(params[:id])
+    @post.destroy
+    redirect_to public_posts_path
     end
 
     def update
+        if @post.update(post_params)
+        redirect_to public_post_path(@post), notice: "You have updated book successfully."
+        else
+        render "edit"
+        end
     end
 
     private

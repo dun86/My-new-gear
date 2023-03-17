@@ -13,22 +13,19 @@
 	  <th><%= customer.profile %></th>
   </tr>
   <tr>
-    <!--
 
-    <th>follows</th>
-    <th><!--%= link_to user.followings.count, user_followings_path(user) %></th>
+    <th>Follow</th>
+    <th><%= link_to customer.followings.count, public_customer_followings_path(customer) %></th>
   </tr>
   <tr>
-    <th>followers</th>
-    <th><!%= link_to user.followers.count, user_followers_path(user) %></th>
+    <th>Follower</th>
+    <th><%= link_to customer.followers.count, public_customer_followers_path(customer) %></th>
   </tr>
-
-  -->
 </table>
 
 <div class='row'>
    <% if current_customer != customer %>
-   <td><%= render "relationships/btn", user: user %></td>
+   <td><%= render "public/relationships/btn", customer: customer %></td>
   <% else %>
   <%= link_to edit_public_customer_path(customer), class: "btn btn-outline-secondary btn-block edit_user_#{customer.id}" do %>
     <i class="fas fa-user-cog"></i>

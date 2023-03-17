@@ -1,0 +1,20 @@
+<table>
+  <tbody>
+    <% post.post_comments.each do |post_comment| %>
+      <tr>
+        <td>
+          <%= link_to public_customer_path(post_comment.customer) do %>
+            <%= image_tag post_comment.customer.image, size: "100x100" ,onerror: "this.onerror=null;this.src='/images/no_image.png';"%><br>
+            <%= post_comment.customer.customer_name %>
+          <% end %>
+        </td>
+        <td><%= post_comment.comment %></td>
+        <td>
+          <% if post_comment.customer == current_customer %>
+            <%= link_to "Destroy", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>　<!--remote :true-->
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
