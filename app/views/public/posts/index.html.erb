@@ -11,19 +11,25 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-            <%= link_to public_post_path(post) do %>
+          <%= link_to public_post_path(post) do %>
             <% if post.images.attached? %>
-            <%= image_tag url_for(post.images.variant(resize: "100x100")), onerror: "this.onerror=null;this.src='/images/no_image.png';" %>
+              <%= image_tag url_for(post.images.variant(resize: "100x100")), onerror: "this.onerror=null;this.src='/images/no_image.png';" %>
             <% else %>
-            <%= image_tag "/images/no_image.png", size: "100x100" %>
+              <%= image_tag "/images/no_image.png", size: "100x100" %>
             <% end %>
             <%= post.customer.customer_name %>
-            <% end %>
+          <% end %>
         </td>
         <td><%= link_to post.title,public_post_path(post), class: "post_#{post.id}" %></td>
         <td><%= post.introduction %></td>
         <td>コメント数: <%= post.post_comments.count %></td>
-        <td><%= render "favorites/btn", post: post %></td>
+        <td>
+          <% if customer_signed_in? %>
+            <%= render "favorites/btn", post: post %>
+          <% else %>
+            <%= link_to "ログインしているユーザーのみお気に入り登録できます", new_customer_session_path %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

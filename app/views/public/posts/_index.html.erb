@@ -12,7 +12,7 @@
         <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
         <td><%= post.introduction %></td>
         <td>コメント数: <%= post.post_comments.count %></td>
-        <td><!--%= render "favorites/btn", post: post %--></td>
+        <td><%= render "favorites/btn", post: post %></td>
       </tr>
     <% end %>
   </tbody>
