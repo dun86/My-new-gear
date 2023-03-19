@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :genres
   end
   namespace :public do
-    resources :posts, only: [:new, :create, :index, :show, :destroy, :edit] do
-       resources :post_comments, only: [:create, :destroy] 
-       resource :favorites, only: [:create, :destroy]
+    resources :posts, only: [:new, :create, :index, :show, :destroy, :edit, :update] do
+       resources :post_comments, only: [:create, :destroy]
+       resources :favorites, only: [:create, :destroy, :index]
        end
     resources :customers, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]

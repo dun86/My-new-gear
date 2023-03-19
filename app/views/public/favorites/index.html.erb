@@ -1,24 +1,25 @@
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= link_to(public_posts_path) do %>
-          <%= image_tag post.customer.image, size:'50x50' %>
-          <% end %>
-        </td>
-        <td><%= link_to post.title,public_post_path(post), class: "post_#{post.id}" %></td>
-        <td><%= post.introduction %></td>
-        <td>コメント数: <%= post.post_comments.count %></td>
-        <td><%= render "favorites/btn", post: post %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Favorites List</h1>
+<div class="row">
+  <% @favorites.each do |favorite| %>
+    <div class="col-md-3">
+      <div class="card mb-4 shadow-sm">
+        <% if favorite.post.images.attached? %>
+          <img src="<%= url_for(favorite.post.images.first.variant(resize: "100x100")) %>" alt="<%= favorite.post.title %>" class="card-img-top">
+        <% else %>
+          <img src="<%= asset_path('no_image.jpg', resize: "100x100")%>" alt="No image" class="card-img-top">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= favorite.post.title %></h5>
+          <p class="card-text"><%= favorite.post.introduction %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <%= link_to 'View', public_post_path(favorite.post), class: 'btn btn-sm btn-outline-secondary' %>
+            <%= link_to public_post_favorite_path(favorite.post, favorite), method: :delete, remote: true do %>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= favorite.post.favorites.count %> Good
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

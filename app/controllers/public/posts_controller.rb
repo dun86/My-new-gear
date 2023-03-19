@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+    
     def index
         # 投稿データを全て取得、またインスタンス変数なのでViewで参照可能
         @posts = Post.all
@@ -22,6 +23,10 @@ class Public::PostsController < ApplicationController
     end
     end
 
+    def edit
+    @post = Post.find(params[:id])
+    end
+
     # findメソッドで、idにひもづくPOSTオブジェクトを取得する
     def show
      @post = Post.find(params[:id])
@@ -29,6 +34,12 @@ class Public::PostsController < ApplicationController
     end
 
     def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to public_post_path(@post), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
     end
 
     def destroy
@@ -37,19 +48,11 @@ class Public::PostsController < ApplicationController
     redirect_to public_posts_path
     end
 
-    def update
-        if @post.update(post_params)
-        redirect_to public_post_path(@post), notice: "You have updated book successfully."
-        else
-        render "edit"
-        end
-    end
-
     private
 
     #paramsから欲しいデータのみ抽出
     def post_params
-        params.require(:post).permit(:genre_id, :title, :introduction)
+    
+        params.require(:post).permit(:genre_id, :title, :introduction, images: [])
     end
-
 end

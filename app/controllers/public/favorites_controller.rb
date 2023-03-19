@@ -14,7 +14,7 @@ class Public::FavoritesController < ApplicationController
   end
 
   def index
-    @favorites = Favorite.all
+    @favorites = current_customer.favorites
   end
 
    def favorite_params
