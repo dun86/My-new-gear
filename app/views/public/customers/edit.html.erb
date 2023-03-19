@@ -1,0 +1,26 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <!--public内のCustomerからアップデートのメソッドを記入する際はmodelのみの記入ではうまくいかないためURLの指定がいる。
+    　　ただし、modelを消すとコントローラー内のensureの部分が不要になってしまう。←　今回は別のとこでmodelを使ってるため消したくないのでmodelも記入した-->
+      <%= form_with model:@customer, url: public_customer_path(@customer) ,method: :patch,  local:true do |f| %>
+      <%= render 'layouts/errors', obj: @customer %>
+      <div class="form-group">
+        <%= f.label :customer_name %>
+        <%= f.text_field :customer_name, class: "form-control name" %>
+      </div>
+     <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: "form-control-file customer_image", accept: 'image/*' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :profile %>
+        <%= f.text_area :profile, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

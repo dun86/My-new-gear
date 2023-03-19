@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
+        <td><%= post.introduction %></td>
+        <td>コメント数: <%= post.post_comments.count %></td>
+        <td><%= render "favorites/btn", post: post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

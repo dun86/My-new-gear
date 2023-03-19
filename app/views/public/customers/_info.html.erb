@@ -1,0 +1,34 @@
+<table class='table'>
+   <% if customer.image.attached? %>
+   <tr><%= image_tag customer.image, size:'100x100' %></tr>
+  <% else %>
+    <tr><%= image_tag 'no_image', size: "100x100" %></tr>
+  <% end %>
+  <tr>
+	  <th>name</th>
+	  <th><%= customer.customer_name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= customer.profile %></th>
+  </tr>
+  <tr>
+
+    <th>Follow</th>
+    <th><%= link_to customer.followings.count, public_customer_followings_path(customer) %></th>
+  </tr>
+  <tr>
+    <th>Follower</th>
+    <th><%= link_to customer.followers.count, public_customer_followers_path(customer) %></th>
+  </tr>
+</table>
+
+<div class='row'>
+   <% if current_customer != customer %>
+   <td><%= render "public/relationships/btn", customer: customer %></td>
+  <% else %>
+  <%= link_to edit_public_customer_path(customer), class: "btn btn-outline-secondary btn-block edit_user_#{customer.id}" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+   <% end %>
+</div>
