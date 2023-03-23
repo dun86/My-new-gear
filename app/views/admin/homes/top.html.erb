@@ -1,0 +1,20 @@
+<h1>管理者側トップページ</h1>
+<div class="text-center">
+  <ul class="list-inline">
+    <% if admin_signed_in? %>
+      <li class="list-inline-item">
+        <%= link_to "Admin Gears",admin_posts_path, class: 'nav-link text-dark' %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "Log-out", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to 'Admin Customer', admin_customers_path, class: 'nav-link text-dark' %>
+      </li>
+    <% else %>
+      <li class="list-inline-item">
+        <%= link_to "Log-in", admin_session_path, class: 'nav-link text-dark' %>
+      </li>
+    <% end %>
+  </ul>
+</div>

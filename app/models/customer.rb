@@ -28,4 +28,12 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
   
+  def self.search(search)
+    if search
+      where("customer_name LIKE ?", "%#{search}%")
+    else
+      all
+    end
+  end
+  
 end

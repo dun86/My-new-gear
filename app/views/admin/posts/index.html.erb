@@ -1,0 +1,34 @@
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th>Comments</th>
+        <th>Destroy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to public_post_path(post) do %>
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0].variant(resize: "100x100"), class: "rounded-circle" %>
+              <% else %>
+                <%= image_tag "no_image", size: "100x100", class: "rounded-circle" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
+          <td><%= post.introduction %></td>
+          <td><%= post.post_comments.count %></td>
+          <td>
+            <%= link_to 'Destroy', admin_post_path(post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,8 +1,4 @@
-class Public::CustomersController < ApplicationController
-  
-  before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only: [:edit, :update]
-
+class Admin::CustomersController < ApplicationController 
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts

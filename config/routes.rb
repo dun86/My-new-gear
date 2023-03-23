@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    get '/' => 'homes#top'
+    resources :posts, only: [:index, :show, :destroy, :edit, :update]
+    resources :customers, only: [:index,:show,:edit,:update, :destroy] 
     resources :genres
   end
+  
   namespace :public do
     resources :posts, only: [:new, :create, :index, :show, :destroy, :edit, :update] do
        resources :post_comments, only: [:create, :destroy]
        resources :favorites, only: [:create, :destroy, :index]
        end
-    resources :customers, only: [:index,:show,:edit,:update] do
+    resources :customers, only: [:index,:show,:edit,:update, :destroy] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'

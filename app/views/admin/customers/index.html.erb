@@ -7,12 +7,11 @@
     </tr>
   </thead>
   <tbody>
-    <% customers.each do |customer| %>
+    <% @customers.each do |customer| %>
       <tr>
         <td><%= image_tag customer.image, size: '50x50' if customer.image.present? %></td>
         <td><%= customer.customer_name %></td>
-        <td><%= link_to 'Show', public_customer_path(customer), class: "customer_#{customer.id}" %></td>
-        <td><%= render "public/relationships/btn", customer: customer %></td>
+        <td><%= button_to "強制退会", registration_path(customer), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
       </tr>
       <% end %>
   </tbody>
