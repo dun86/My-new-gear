@@ -7,7 +7,7 @@
           <tbody>
             <tr>
               <td><%= f.label :画像 %></td>
-              <td><%= f.file_field :images, multiple: true, class: 'form-control-file' %></td>
+                <td><%= f.file_field :images, multiple: true, accept: "image/*", class: 'form-control-file', data: { max_files: 5 } %>
             </tr>
             <tr>
 

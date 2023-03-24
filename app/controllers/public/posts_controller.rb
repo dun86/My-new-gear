@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
     def index
         # 投稿データを全て取得、またインスタンス変数なのでViewで参照可能
         @posts = Post.all
+        @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
     end
 
     #ルーティングの変更後に追加

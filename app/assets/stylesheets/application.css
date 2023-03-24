@@ -1,3 +1,5 @@
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +15,57 @@
  *= require_tree .
  *= require_self
  */
+
+/* 全体の背景色 */
+body {
+  background-color:rgba(255,255,255,0.8);
+  background-blend-mode:lighten;
+  background-image: url('background-image.jpg');
+  background-size: cover;
+}
+
+/* ヘッダーのスタイル */
+header {
+  background-color: #C0C0C0;
+  background-color: transparent;
+}
+
+.navbar-brand {
+  font-family: 'Delicious Handrawn', cursive;
+  font-size: 36px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-link {
+  font-family: 'Delicious Handrawn', cursive;
+  font-size: 16px;
+  color: #333;
+}
+
+/* メインコンテンツのスタイル */
+main {
+  padding: 20px;
+}
+
+/* フッターのスタイル */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Delicious Handrawn', cursive;
+}
+
+/* フッターのリンクのスタイル */
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Delicious Handrawn', cursive;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  background-color: #C0C0C0;
+  font-family: 'Delicious Handrawn', cursive;
+}
