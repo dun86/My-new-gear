@@ -1,25 +1,33 @@
-<h1>Favorites List</h1>
-<div class="row">
-  <% @favorites.each do |favorite| %>
-    <div class="col-md-3">
-      <div class="card mb-4 shadow-sm">
-        <% if favorite.post.images.attached? %>
-          <img src="<%= url_for(favorite.post.images.first.variant(resize: "100x100")) %>" alt="<%= favorite.post.title %>" class="card-img-top">
-        <% else %>
-          <img src="<%= asset_path('no_image.jpg', resize: "100x100")%>" alt="No image" class="card-img-top">
+<div class="container mt-5">
+  <h1>Favorites List</h1>
+  <div class="table-responsive mt-3">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Introduction</th>
+          <th>Good</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td>
+              <% if favorite.post.images.attached? %>
+                <img src="<%= url_for(favorite.post.images.first.variant(resize: "100x100")) %>" alt="<%= favorite.post.title %>" class="img-thumbnail">
+              <% else %>
+                <img src="<%= asset_path('no_image.jpg', resize: "100x100")%>" alt="No image" class="img-thumbnail">
+              <% end %>
+            </td>
+            <td><%= favorite.post.title %></td>
+            <td><%= favorite.post.introduction %></td>
+            <td><%= favorite.post.favorites.count %> Good</td>
+            <td><%= link_to 'View', public_post_path(favorite.post), class: 'btn btn-sm btn-outline-secondary' %></td>
+          </tr>
         <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= favorite.post.title %></h5>
-          <p class="card-text"><%= favorite.post.introduction %></p>
-          <div class="d-flex justify-content-between align-items-center">
-            <%= link_to 'View', public_post_path(favorite.post), class: 'btn btn-sm btn-outline-secondary' %>
-            <%= link_to public_post_favorite_path(favorite.post, favorite), method: :delete, remote: true do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-              <%= favorite.post.favorites.count %> Good
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

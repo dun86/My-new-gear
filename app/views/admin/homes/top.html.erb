@@ -1,4 +1,23 @@
-<h1>管理者側トップページ</h1>
+<head>
+  <!-- ... -->
+  <style>
+    .page-header {
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 9px;
+      margin: 40px 0 20px;
+    }
+    .page-header h1 {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+
+<div class="page-header">
+  <h1 class="text-center">Admin Top Page</h1>
+</div>
 <div class="text-center">
   <ul class="list-inline">
     <% if admin_signed_in? %>
@@ -10,6 +29,9 @@
       </li>
       <li class="list-inline-item">
         <%= link_to 'Admin Customer', admin_customers_path, class: 'nav-link text-dark' %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to 'Admin Genres', admin_genres_path, class: 'nav-link text-dark' %>
       </li>
     <% else %>
       <li class="list-inline-item">

@@ -1,28 +1,26 @@
-<table>
-  <tbody>
-    <% post.post_comments.each do |post_comment| %>
-      <tr>
-       <td>
-        <% if post_comment.customer.image.attached? %>
-          <%= link_to public_customer_path(post_comment.customer) do %>
-            <%= image_tag post_comment.customer.image, size: "100x100" %><br>
-            <%= post_comment.customer.customer_name %>
-          <% end %>
-        <% else %>
-          <%= link_to public_customer_path(post_comment.customer) do %>
-            <%= image_tag 'no_image', size: "100x100" %><br>
-            <%= post_comment.customer.customer_name %>
-          <% end %>
+<div class="container mt-5">
+  <h1>Comments</h1>
+  <% post.post_comments.each do |post_comment| %>
+    <div class="media mt-4">
+      <% if post_comment.customer.image.attached? %>
+        <%= link_to public_customer_path(post_comment.customer) do %>
+          <%= image_tag post_comment.customer.image.variant(resize: "50x50").processed, class: "rounded-circle mr-3" %>
         <% end %>
-　　　　</td>
-　　　　
-        <td><%= post_comment.comment %></td>
-        <td>
+      <% else %>
+        <%= link_to public_customer_path(post_comment.customer) do %>
+          <%= image_tag 'no_image', size: "50x50", class: "rounded-circle mr-3" %>
+        <% end %>
+      <% end %>
+      <div class="media-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mt-0 mb-0"><%= post_comment.customer.customer_name %></h5>
           <% if post_comment.customer == current_customer %>
-            <%= link_to "Destroy", public_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger pull-right" %>　<!--remote :true-->
+            <%= link_to public_post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "text-danger" do %><i class="fas fa-trash-alt fa-xs"></i>
+　　　　　　<% end %>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+        <%= post_comment.comment %>
+      </div>
+    </div>
+  <% end %>
+</div>

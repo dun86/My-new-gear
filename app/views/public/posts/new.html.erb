@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="mx-auto">
+      <div class="mx-auto text-center">
         <%= f.submit '　投稿　', class: 'btn btn-lg btn-success', id: 'submit-button' %>
       </div>
     </div>
@@ -45,7 +45,7 @@
   const submitButton = document.getElementById('submit-button');
   const titleField = document.getElementById('post_title');
   const introductionField = document.getElementById('post_introduction');
-  
+
   submitButton.addEventListener('click', (event) => {
     if (!titleField.value || !introductionField.value) {
       event.preventDefault();

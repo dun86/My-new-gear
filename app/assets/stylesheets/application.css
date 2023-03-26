@@ -26,6 +26,7 @@ body {
 
 /* ヘッダーのスタイル */
 header {
+  font-family: 'Delicious Handrawn', cursive;
   background-color: #C0C0C0;
   background-color: transparent;
 }
@@ -39,8 +40,7 @@ header {
 
 .nav-link {
   font-family: 'Delicious Handrawn', cursive;
-  font-size: 16px;
-  color: #333;
+  font-size: 20px;
 }
 
 /* メインコンテンツのスタイル */
