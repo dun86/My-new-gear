@@ -1,4 +1,6 @@
-class Admin::CustomersController < ApplicationController 
+class Admin::CustomersController < ApplicationController
+  before_action :set_customer, only: [:destroy]
+
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
@@ -8,7 +10,7 @@ class Admin::CustomersController < ApplicationController
   def index
     @customers = Customer.all
     @customer = Customer.new
-    
+
     if params[:search]
     @users = Customer.search(params[:search])
     else
@@ -27,12 +29,18 @@ class Admin::CustomersController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
-  @customer = current_customer
-  @customer.destroy
-  redirect_to "/", notice: "退会処理が完了しました。ご利用ありがとうございました。"
+      @customer.destroy
+      redirect_to "/admin/customers", notice: "退会処理が完了しました。ご利用ありがとうございました。"
   end
+
+    private
+
+    def set_customer
+      @customer = current_customer
+      redirect_to "/admin/customers", alert: "顧客が見つかりませんでした" unless @customer
+    end
 
   private
 

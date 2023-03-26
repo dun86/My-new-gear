@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     get '/admin' =>'admin#top'
     resources :posts, only: [:index, :show, :destroy, :edit, :update]
-    resources :customers, only: [:index,:show,:edit,:update, :destroy] 
+    resources :customers, only: [:index,:show,:edit,:update, :destroy]
     resources :genres
   end
   

@@ -9,10 +9,16 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= image_tag customer.image, size: '50x50' if customer.image.present? %></td>
+        <td>
+          <% if customer.image.present? %>
+            <%= image_tag customer.image, size: '50x50' %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: '50x50' %>
+          <% end %>
+        </td>
         <td><%= customer.customer_name %></td>
-        <td><%= button_to "強制退会", registration_path(customer), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
+        <td><%= button_to "Destroy", admin_customer_path(customer.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></td>
       </tr>
-      <% end %>
+    <% end %>
   </tbody>
 </table>
