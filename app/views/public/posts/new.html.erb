@@ -26,7 +26,8 @@
             </tr>
             <tr>
               <td><%= f.label :ジャンル %></td>
-              <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, include_blank: "--選択して下さい--" %></td>
+              <% default_genre = Genre.find_by(genre_name: 'No-Genre') %>
+              <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, { selected: default_genre.id }, include_blank: "--選択して下さい--" %></td>
             </tr>
           </tbody>
         </table>
@@ -34,8 +35,21 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-        <%= f.submit '　投稿　', class: 'btn btn-lg btn-success' %>
+        <%= f.submit '　投稿　', class: 'btn btn-lg btn-success', id: 'submit-button' %>
       </div>
     </div>
   <% end %>
 </div>
+
+<script>
+  const submitButton = document.getElementById('submit-button');
+  const titleField = document.getElementById('post_title');
+  const introductionField = document.getElementById('post_introduction');
+  
+  submitButton.addEventListener('click', (event) => {
+    if (!titleField.value || !introductionField.value) {
+      event.preventDefault();
+      alert('タイトルと内容を入力してください。');
+    }
+  });
+</script>

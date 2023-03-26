@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
      @post.customer_id = current_customer.id
     if @post.save
       @post.video.attach(params[:post][:video])
-      redirect_to public_posts_path(@post), notice: "You have created book successfully."
+      redirect_to public_posts_path(@post), notice: "You have created post successfully."
     else
       @posts = Post.all
       render 'index'

@@ -1,28 +1,38 @@
-<% if @customers.exists? %>
-  <% @customers.each do |customer| %>
-    <table>
+<% if @customers.present? %>
+  <div class="table-responsive">
+    <table class="table table-hover">
       <thead>
         <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
+          <th>Name</th>
+          <th>フォロー数</th>
+          <th>フォロワー数</th>
+          <th>アクション</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><% if customer.image.present? %>
-          <%= link_to public_customer_path(customer) do %>
-          <%= image_tag customer.image, size: "100x100",onerror: "this.onerror=null;this.src='/images/no_image.png';" %></br>
-          <%= customer.customer_name %>
-          <% end %>
-          <% end %>
-          </td>
-          <td>フォロー数: <%= customer.followings.count %></td>
-          <td>フォロワー数: <%= customer.followers.count %></td>
-        </tr>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td>
+              <% if customer.image.attached? %>
+                <%= link_to public_customer_path(customer) do %>
+                  <%= image_tag customer.image.variant(resize: "100x100"), class: "rounded-circle", width: 50, height: 50, onerror: "this.onerror=null;this.src='/images/no_image.jpg';" %>
+                  <%= customer.customer_name %>
+                <% end %>
+              <% else %>
+                <%= link_to public_customer_path(customer) do %>
+                  <%= image_tag "no_image.jpg", class: "rounded-circle", width: 50, height: 50 %>
+                  <%= customer.customer_name %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= customer.followings.count %></td>
+            <td><%= customer.followers.count %></td>
+            <td><%= link_to "詳細を見る", public_customer_path(customer), class: "btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-  <% end %>
+  </div>
 <% else %>
   <p>No User</p>
 <% end %>

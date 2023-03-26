@@ -1,4 +1,25 @@
-<%= form_with model: [@post, PostComment.new], url: public_post_post_comments_path(@post), local: false do |f| %>
+<%= form_with model: [@post, PostComment.new], url: public_post_post_comments_path(@post), local: false, html: { id: "comment-form" } do |f| %>
+  <% if f.object.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(f.object.errors.count, "error") %> があります:</h4>
+      <ul>
+        <% f.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
-  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right", data: { confirm: "コメントを投稿しますか？" } %>
 <% end %>
+
+<script>
+  const form = document.getElementById('comment-form');
+  form.addEventListener('submit', function(event) {
+    const commentInput = form.querySelector('textarea');
+    if (commentInput.value.trim() === '') {
+      event.preventDefault();
+      alert('コメントを入力してください');
+    }
+  });
+</script>
