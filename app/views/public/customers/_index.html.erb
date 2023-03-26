@@ -9,7 +9,11 @@
   <tbody>
     <% customers.each do |customer| %>
       <tr>
-        <td><%= image_tag customer.image, size: '50x50' if customer.image.present? %></td>
+      <% if customer.image.present? %>
+            <td><%= image_tag customer.image, size: '80x80',class: "rounded-circle" %></td>
+          <% else %>
+            <td><%= image_tag 'no_image.jpg', size: '80x80',class: "rounded-circle" %></td>
+          <% end %>
         <td><%= customer.customer_name %></td>
         <td><%= link_to 'Show', public_customer_path(customer), class: "customer_#{customer.id}" %></td>
         <td><%= render "public/relationships/btn", customer: customer %></td>
