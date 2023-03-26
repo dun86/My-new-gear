@@ -5,9 +5,15 @@
       <div class="offset-md-1 col-md-6 mx-auto">
         <table class="table table-borderless mt-3" >
           <tbody>
+
+            <tr>
+            <td><%= f.label :動画 %></td>
+            <td><%= f.file_field :video, accept: "video/*", class: 'form-control-file' %></td>
+            </tr>
+
             <tr>
               <td><%= f.label :画像 %></td>
-                <td><%= f.file_field :images, multiple: true, accept: "image/*", class: 'form-control-file', data: { max_files: 5 } %>
+              <td><%= f.file_field :images, multiple: true, accept: "image/*", class: 'form-control-file', data: { max_files: 5 } %>
             </tr>
             <tr>
 

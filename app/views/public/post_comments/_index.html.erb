@@ -2,12 +2,20 @@
   <tbody>
     <% post.post_comments.each do |post_comment| %>
       <tr>
-        <td>
+       <td>
+        <% if post_comment.customer.image.attached? %>
           <%= link_to public_customer_path(post_comment.customer) do %>
-            <%= image_tag post_comment.customer.image, size: "100x100" ,onerror: "this.onerror=null;this.src='/images/no_image.png';"%><br>
+            <%= image_tag post_comment.customer.image, size: "100x100" %><br>
             <%= post_comment.customer.customer_name %>
           <% end %>
-        </td>
+        <% else %>
+          <%= link_to public_customer_path(post_comment.customer) do %>
+            <%= image_tag 'no_image', size: "100x100" %><br>
+            <%= post_comment.customer.customer_name %>
+          <% end %>
+        <% end %>
+　　　　</td>
+　　　　
         <td><%= post_comment.comment %></td>
         <td>
           <% if post_comment.customer == current_customer %>

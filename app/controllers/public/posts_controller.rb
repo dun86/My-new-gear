@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-    
+
     def index
         # 投稿データを全て取得、またインスタンス変数なのでViewで参照可能
         @posts = Post.all
@@ -17,6 +17,7 @@ class Public::PostsController < ApplicationController
      @post = Post.new(post_params)
      @post.customer_id = current_customer.id
     if @post.save
+      @post.video.attach(params[:post][:video])
       redirect_to public_posts_path(@post), notice: "You have created book successfully."
     else
       @posts = Post.all
@@ -53,7 +54,6 @@ class Public::PostsController < ApplicationController
 
     #paramsから欲しいデータのみ抽出
     def post_params
-    
-        params.require(:post).permit(:genre_id, :title, :introduction, images: [])
+      params.require(:post).permit(:title, :introduction, :genre_id, images: [], video: [])
     end
 end
