@@ -27,15 +27,18 @@
                   aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
           </button>
+          
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
-              <%= form_tag public_customers_path, method: :get do %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search for User" %>
-                <%= button_tag type: :submit, class: "btn btn-link" do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-              <% end %>
+            
+           <%= form_tag public_customers_path, method: :get do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search for User" %>
+            <%= button_tag type: :submit, class: "btn btn-link" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+                        
               <%= form_tag public_posts_path, method: :get do %>
                 <%= text_field_tag :search, params[:search], placeholder: "Search for Gears" %>
                 <%= button_tag type: :submit, class: "btn btn-link" do %>

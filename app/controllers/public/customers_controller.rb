@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  
+
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only: [:edit, :update]
 
@@ -12,11 +12,11 @@ class Public::CustomersController < ApplicationController
   def index
     @customers = Customer.all
     @customer = Customer.new
-    
-    if params[:search]
-    @users = Customer.search(params[:search])
+
+    if params[:search].present?
+        @customers = Customer.where("customer_name LIKE ?", "%#{params[:search]}%")
     else
-    @users = Customer.all
+        @customers = Customer.all
     end
   end
 
@@ -31,7 +31,7 @@ class Public::CustomersController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
   @customer = current_customer
   @customer.destroy
