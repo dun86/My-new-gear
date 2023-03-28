@@ -15,19 +15,20 @@
         </div>
       <% end %>
 
-      <% if @post.images.attached? %>
-        <div class="card mb-4" style="background-color: silver;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <%= link_to image_tag(@post.images[0].variant(resize: "100x100"), class: "card-img img-thumbnail img-round"), "#", "data-toggle": "modal", "data-target": "#imageModal" %>
-              <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable" role="document">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <% @post.images.each do |image| %>
-                        <%= image_tag image.variant(resize_to_limit: [800, 800]), class: "img-fluid mb-3" %>
-                      <% end %>
-                    </div>
+      <div class="card-body">
+          <% if @post.images.attached? %>
+            <div class="card mb-4" style="background-color: silver;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <%= link_to image_tag(@post.images[0].variant(resize: "100x100"), class: "card-img img-thumbnail img-round"), "#", "data-toggle": "modal", "data-target": "#imageModal" %>
+                  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <% @post.images.each do |image| %>
+                            <%= image_tag image.variant(resize_to_limit: [800, 800]), class: "img-fluid mb-3" %>
+                          <% end %>
+                        </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
@@ -35,17 +36,21 @@
                     </div>
                   </div>
                 </div>
-
-
-      <div class="col-md-8">
-        <div class="card-body">
-          <p class="card-text"><%= @post.introduction %></p>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-text"><%= @post.introduction %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <p class="card-text"><%= @post.introduction %></p>
+          <% end %>
         </div>
 
-      </div>
-    </div>
-  </div>
-<% end %>
+
+
+
        <div class ="card-footer">
           <span class="me-2"><i class="fas fa-comments"></i> <%= @post.post_comments.count %> comments</span>
             <% if current_customer %>
