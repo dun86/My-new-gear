@@ -22,7 +22,7 @@
             <% end %>
           </td>
           <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
-          <td><%= post.introduction %></td>
+          <td><%= truncate(post.introduction, length: 50) %></td>
           <td><%= post.post_comments.count %></td>
           <td>
             <%= link_to 'Destroy', admin_post_path(post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
