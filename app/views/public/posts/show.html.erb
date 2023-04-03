@@ -21,7 +21,8 @@
             <div class="card mb-4" style="background-color: silver;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <%= link_to image_tag(@post.images[0].variant(resize: "20×20"), class: "card-img img-thumbnail img-round"), "#", "data-toggle": "modal", "data-target": "#imageModal" %>
+                  <%= link_to image_tag(@post.images[0].variant(resize: "80x80"), class: "img-thumbnail"), "#", "data-toggle": "modal", "data-target": "#imageModal" %>
+
                   <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                       <div class="modal-content">
