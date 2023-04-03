@@ -78,4 +78,6 @@ Rails.application.configure do
   config.assets.digest = true
   config.active_storage.service = :local
   config.assets.compile = true
+  
+  
 end

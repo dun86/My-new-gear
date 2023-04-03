@@ -119,4 +119,8 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.active_storage.service = :local
   config.assets.compile = true
+  
+  config.active_storage.variant_processor = :vips
+
+  config.active_storage.variant_processors.vips = VipsProcessor
 end

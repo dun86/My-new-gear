@@ -1,35 +1,38 @@
 <h1>新規投稿</h1>
 <!-- form_with部分 -->
-<%= form_with model:@post, url: public_posts_path, method: :post, local:true do |f| %>
-    <div class="row">
-      <div class="offset-md-1 col-md-6 mx-auto">
-        <table class="table table-borderless mt-3" >
-          <tbody>
-
-            <tr>
+<%= form_with model:@post, url: public_posts_path, method: :post, local:true, remote: true do |f| %>
+  <div class="row">
+    <div class="offset-md-1 col-md-6 mx-auto">
+      <table class="table table-borderless mt-3">
+        <tbody>
+          <tr>
             <td><%= f.label :動画 %></td>
-            <td><%= f.file_field :video, accept: "video/*", class: 'form-control-file' %></td>
-            </tr>
+            <td><%= f.file_field :video, accept: "video/*", class: 'form-control-file', onchange: 'compressVideo(this)' %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :画像 %></td>
+            <td>
+              <%= f.file_field :images, multiple: true, accept: "image/*", class: 'form-control-file', data: { max_files: 5, validate_file_size: true, max_file_size: 5.megabytes.to_i, max_total_file_size: 20.megabytes.to_i } %>
+              <small>最大5ファイル、合計20MBまで</small>
+            </td>
 
             <tr>
-              <td><%= f.label :画像 %></td>
-              <td><%= f.file_field :images, multiple: true, accept: "image/*", class: 'form-control-file', data: { max_files: 5 } %>
-            </tr>
-            <tr>
-
               <td><%= f.label :タイトル %></td>
               <td><%= f.text_field :title, class: 'form-control', placeholder: "タイトル" %></td>
             </tr>
+
             <tr>
               <td><%= f.label :内容 %></td>
               <td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう" %></td>
             </tr>
+
             <tr>
               <td><%= f.label :ジャンル %></td>
               <% default_genre = Genre.find_by(genre_name: 'No-Genre') %>
               <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, { selected: default_genre.id }, include_blank: "--選択して下さい--" %></td>
             </tr>
           </tbody>
+
         </table>
       </div>
     </div>
@@ -52,4 +55,29 @@
       alert('タイトルと内容を入力してください。');
     }
   });
+  // 動画の圧縮
+  function compressVideo(input) {
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const video = document.createElement('video');
+        video.src = e.target.result;
+        video.onloadedmetadata = function() {
+          const canvas = document.createElement('canvas');
+          const width = Math.min(video.videoWidth, 640);
+          const height = video.videoHeight * (width / video.videoWidth);
+          canvas.width = width;
+          canvas.height = height;
+          const context = canvas.getContext('2d');
+          context.drawImage(video, 0, 0, width, height);
+          canvas.toBlob(function(blob) {
+            const compressedFile = new File([blob], file.name, { type: 'video/mp4', lastModified: Date.now() });
+            input.files[0] = compressedFile;
+          }, 'video/mp4', 0.5);
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 </script>
