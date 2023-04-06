@@ -3,6 +3,8 @@
         <h3 class="p-3"><span class="header" style="background-color:#EEEEEE">
         &emsp;ジャンル一覧・追加&emsp;<span></h3>
     </div>
+    
+    <% if admin_signed_in? %>
     <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
     <%= render 'layouts/errors', obj: @genre %>
         <div class="form-group" style="margin-top: 1vh;">
@@ -35,5 +37,6 @@
         <% end %>
         </tbody>
     </table>
+    <% end %>
   </div>
 </div>
