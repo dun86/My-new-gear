@@ -17,14 +17,14 @@
             </td>
 
             <tr>
-              <td><%= f.label :タイトル %></td>
-              <td><%= f.text_field :title, class: 'form-control', placeholder: "タイトル" %></td>
-            </tr>
+            <td><%= f.label :タイトル %></td>
+            <td><%= f.text_field :title, class: 'form-control', placeholder: "タイトル[50字以内]", maxlength: 50 %></td>
+          　</tr>
 
-            <tr>
-              <td><%= f.label :内容 %></td>
-              <td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう" %></td>
-            </tr>
+          　<tr>
+            　<td><%= f.label :内容 %></td>
+            　<td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう[500字以内]", maxlength: 500 %></td>
+          　</tr>
 
             <tr>
               <td><%= f.label :ジャンル %></td>

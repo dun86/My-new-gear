@@ -22,7 +22,7 @@
               <% end %>
             </td>
             <td><%= favorite.post.title %></td>
-            <td><%= favorite.post.introduction %></td>
+            <td><%= truncate(favorite.post.introduction, length: 20) %></td>
             <td><span class="me-2" style="color: red;"><i class="fas fa-heart"></i><%= favorite.post.favorites.count %> Good</td>
             <td><%= link_to 'View', public_post_path(favorite.post), class: 'btn btn-sm btn-outline-secondary' %></td>
           </tr>
