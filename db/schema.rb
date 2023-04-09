@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2023_03_26_022407) do
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "customer_name", default: "", null: false
+    t.text "customer_introduction"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
