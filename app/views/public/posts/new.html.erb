@@ -18,12 +18,12 @@
 
             <tr>
             <td><%= f.label :タイトル %></td>
-            <td><%= f.text_field :title, class: 'form-control', placeholder: "タイトル", maxlength: 40 %></td>
+            <td><%= f.text_field :title, class: 'form-control', placeholder: "タイトル[100字以内]", maxlength: 100 %></td>
           　</tr>
 
           　<tr>
             　<td><%= f.label :内容 %></td>
-            　<td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう", maxlength: 300 %></td>
+            　<td><%= f.text_area :introduction, class: 'form-control', placeholder: "あなたのセッティング、機材等を紹介しよう[500字以内]", maxlength: 500 %></td>
           　</tr>
 
             <tr>
