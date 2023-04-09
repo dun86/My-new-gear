@@ -1,10 +1,11 @@
-<% if post.favorited_by?(current_customer) %>
-  <%= link_to public_post_favorite_path(post, post.favorites.find_by(customer_id: current_customer.id)), method: :delete, remote: true do %>
+<% if current_customer && post.favorited_by?(current_customer) %>
+  <%= link_to public_post_favorite_path(post, post.favorites.find_by(customer_id: current_customer.id)), method: :delete,id: "favorite_btn", remote: true do %>
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
     <%= post.favorites.count %> Good
   <% end %>
 <% else %>
-  <%= link_to public_post_favorites_path(post), method: :post, remote: true do %>
+
+  <%= link_to public_post_favorites_path(post), method: :post, id: "favorite_btn" ,remote: true do %>
     <i class="far fa-heart" aria-hidden="true"></i>
     <%= post.favorites.count %> Good
   <% end %>

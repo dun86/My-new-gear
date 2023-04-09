@@ -56,7 +56,10 @@
        <div class ="card-footer">
           <span class="me-2"><i class="fas fa-comments"></i> <%= @post.post_comments.count %> comments</span>
             <% if current_customer %>
-              <span class="me-2"><%= render "favorites/btn", post: @post %></span>
+              <span id="me-2 favorite_btn_<%= @post %>">
+                <%= render "favorites/btn", post: @post %>
+              </span>
+                
               <% if @post.customer == current_customer %>
                 <%= link_to edit_public_post_path(@post), class: "me-2" do %>
                   <i class="far fa-edit"></i>
