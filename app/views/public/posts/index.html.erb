@@ -27,7 +27,7 @@
           <td><i class="fas fa-comments"></i><%= post.post_comments.count %></td>
           <td>
             <% if customer_signed_in? %>
-              <%= render "favorites/btn", post: post %>
+              <span class="me-2" style="color: red;"><i class="fas fa-heart"></i> <%= post.favorites.count %></span>
             <% else %>
               <%= link_to "Login required for adding to favorites", new_customer_session_path %>
             <% end %>
