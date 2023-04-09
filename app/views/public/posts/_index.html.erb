@@ -13,7 +13,7 @@
         <td><%= link_to post.title, public_post_path(post), class: "post_#{post.id}" %></td>
         <td><%= post.introduction %></td>
         <td><i class="fas fa-comments"></i><%= post.post_comments.count %></td>
-        <td><%= render "favorites/btn", post: post %></td>
+        <td><span class="me-2" style="color: red;"><i class="fas fa-heart"></i> <%= post.favorites.count %></span></td>
       </tr>
     <% end %>
   </tbody>
