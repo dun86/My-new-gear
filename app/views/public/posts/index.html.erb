@@ -7,6 +7,7 @@
         <th>Opinion</th>
         <th>Comments</th>
         <th>Favorites</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +33,12 @@
               <%= link_to "Login required for adding to favorites", new_customer_session_path %>
             <% end %>
           </td>
+          <td><%= post.created_at.strftime("%Y-%m-%d") %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+
+<%= paginate @posts, align: :center %>

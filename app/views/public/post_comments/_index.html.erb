@@ -20,6 +20,7 @@
           <% end %>
         </div>
         <%= post_comment.comment %>
+        <p class="text-muted"><small><%= post_comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></small></p>
       </div>
     </div>
   <% end %>

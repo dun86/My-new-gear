@@ -78,6 +78,7 @@
         </div>
         <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
       <% end %>
+      <%= paginate @post_comments %>
     </div>
   </div>
 </div>

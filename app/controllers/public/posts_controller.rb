@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
         # 投稿データを全て取得、またインスタンス変数なのでViewで参照可能
         @posts = Post.all
         @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
+        @posts = @posts.page(params[:page]).per(10)
     end
 
     #ルーティングの変更後に追加
@@ -33,6 +34,7 @@ class Public::PostsController < ApplicationController
     def show
      @post = Post.find(params[:id])
      @post_comment =PostComment.new
+     @post_comments = @post.post_comments.page(params[:page])
     end
 
     def update
