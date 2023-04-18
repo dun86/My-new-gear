@@ -1,22 +1,22 @@
 class Public::PostsController < ApplicationController
 
   def index
-  @posts = Post.all
-  @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
+    @posts = Post.all
+    @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
 
-  sort_by = params[:sort] || 'created_at_desc'
-  sort_column, sort_direction = sort_by.split('_')
+    sort_by = params[:sort] || 'created_at_desc'
+    sort_column, sort_direction = sort_by.split('_')
 
-  case sort_column
-  when 'created_at'
-    order = sort_direction == 'asc' ? :asc : :desc
-    @posts = @posts.order(created_at: order)
-  else
-    @posts = @posts.order(created_at: :desc)
+    case sort_column
+    when 'created_at'
+      order = sort_direction == 'asc' ? :asc : :desc
+      @posts = @posts.order(created_at: order)
+    else
+      @posts = @posts.order(created_at: :desc)
+    end
+
+    @posts = @posts.page(params[:page]).per(10)
   end
-
-  @posts = @posts.page(params[:page]).per(10)
-end
 
 
 
