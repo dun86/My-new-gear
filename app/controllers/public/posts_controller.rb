@@ -1,11 +1,26 @@
 class Public::PostsController < ApplicationController
 
-    def index
-        # 投稿データを全て取得、またインスタンス変数なのでViewで参照可能
-        @posts = Post.all
-        @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
-        @posts = @posts.page(params[:page]).per(10)
-    end
+  def index
+  @posts = Post.all
+  @posts = @posts.where("title LIKE ?", "%#{params[:search]}%") if params[:search].present?
+
+  sort_by = params[:sort] || 'created_at_desc'
+  sort_column, sort_direction = sort_by.split('_')
+
+  case sort_column
+  when 'created_at'
+    order = sort_direction == 'asc' ? :asc : :desc
+    @posts = @posts.order(created_at: order)
+  else
+    @posts = @posts.order(created_at: :desc)
+  end
+
+  @posts = @posts.page(params[:page]).per(10)
+end
+
+
+
+
 
     #ルーティングの変更後に追加
     def new
